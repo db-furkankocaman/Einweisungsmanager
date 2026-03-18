@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einweisung Pro | Digitaler Vordruck</title>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="db-badge">DB</div>
+        <h1>Einweisung Pro</h1>
+        <p class="subtitle">Bahnerdungsberechtigter • 132.0123V13</p>
+    </header>
+
+    <div class="card">
+        <div class="upload-wrapper">
+            <div class="upload-zone" id="dropZone" onclick="document.getElementById('pdfInput').click()">
+                <input type="file" id="pdfInput" accept=".pdf" style="display:none">
+                <div id="dropText">
+                    <span style="font-size: 2rem;">📄</span><br>
+                    <strong style="display:block; margin-top:10px;">Vordruck wählen</strong>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">oder hierher bewegen</span>
+                </div>
+            </div>
+
+            <div id="fileDetails">
+                <div class="detail-row">
+                    <span class="detail-label">Dokument:</span>
+                    <span class="detail-value" id="infoName">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Dateigröße:</span>
+                    <span class="detail-value" id="infoSize">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" id="infoPath" style="color: #34c759;">Lokale Vorlage geladen</span>
+                </div>
+                <center><button style="margin-top:10px; padding: 5px 10px; font-size: 0.7rem; background:#fff1f0; color:var(--apple-red); border-radius:6px; border:1px solid #ffccc7;" onclick="resetFile(event)">Datei entfernen</button></center>
+            </div>
+        </div>
+
+        <div class="section-title">Projekt & Einsatzort</div>
+        <div class="grid">
+            <div class="form-group full"><label>Bezeichnung der Maßnahme</label><input type="text" id="massnahme_bezeichnung"></div>
+            <div class="form-group full"><label>Lage der Arbeitsstelle</label><input type="text" id="arbeitsstelle_lage"></div>
+        </div>
+
+        <div class="section-title">Bahnerdungsberechtigter</div>
+        <div class="grid">
+            <div class="form-group"><label>Vorname Name</label><input type="text" id="be_name"></div>
+            <div class="form-group"><label>Einweisungsdatum</label><input type="text" id="einweisungs_datum" placeholder="TT.MM.JJJJ"></div>
+            <div class="form-group"><label>Unternehmen / OE</label><input type="text" id="be_unternehmen"></div>
+            <div class="form-group"><label>Funktion</label><input type="text" id="be_funktion"></div>
+            <div class="form-group"><label>Telefon</label><input type="text" id="be_telefon"></div>
+            <div class="form-group"><label>Mobil</label><input type="text" id="be_mobil"></div>
+        </div>
+
+        <div class="section-title">Einweisender (AV)</div>
+        <div class="grid">
+            <div class="form-group"><label>Vorname Name</label><input type="text" id="av_name"></div>
+            <div class="form-group"><label>Unternehmen / OE</label><input type="text" id="av_unternehmen"></div>
+            <div class="form-group"><label>Funktion</label><input type="text" id="av_funktion"></div>
+            <div class="form-group"><label>Mobil</label><input type="text" id="av_mobil"></div>
+        </div>
+
+        <div class="section-title">Bemerkungen</div>
+        <textarea id="bemerkungen" rows="4" style="width:100%; box-sizing: border-box;"></textarea>
+
+        <div class="actions">
+            <button class="btn-primary" onclick="createPDF()">PDF Dokument sichern</button>
+            <button class="btn-secondary" onclick="exportHTML()">Als Entwurf (.html) exportieren</button>
+            <button class="btn-clear" onclick="clearData()">Daten zurücksetzen</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
